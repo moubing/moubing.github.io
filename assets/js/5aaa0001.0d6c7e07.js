@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[6262],{2446:s=>{s.exports=JSON.parse('{"label":"admonitions","permalink":"/blog/tags/admonitions","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
