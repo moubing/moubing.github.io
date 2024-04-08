@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9473],{5832:e=>{e.exports=JSON.parse('{"label":"drag-event","permalink":"/blog/tags/drag-event","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
