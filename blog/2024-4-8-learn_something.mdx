@@ -1,0 +1,154 @@
+---
+slug: learn-something
+title: 学习日志-1
+authors: bing
+tags: [mongoose, express, formidable, drag-event]
+---
+
+我正式宣布：今天才是写博客的开始，我写博客单纯就是给自己看的，就当作是一种记录，记录自己的成长，我想留下一些足迹，将来的某一天，翻看我现在写的这些东西，我会觉得这是值得的。
+
+{/* truncate */}
+
+## mongoose 的简单使用
+
+我已经有点忘了怎么用这个 mongoose 了，昨天要用到的时候，脑壳一片空白，我回去找我以前学习它的文件，额现在我只会说一点，就是我用到了那些东西。
+
+安装 mongoose
+
+```bash
+npm i mongoose
+```
+
+然后是引入这个包
+
+```bash
+const mongoose = require('mongoose')
+```
+
+连接本地的 mongodb, 连接字符串长这个样子`mongodb://localhost/dbname`，`dbname`写成你自己的数据库名字，如果本地没有这个数据库，它就自己创建一个
+
+```bash
+mongoose.connect("mongodb://localhost/dbname")
+```
+
+:::info
+你需要先下载`mongodb`到你的电脑，点击此处前往官网[mongodb download](https://www.mongodb.com/docs/manual/installation/)
+:::
+
+我现在只使用了插入记录的功能，首先你要创建一个`model`，一般`model`都会定义在一个文件，然后把它导出，在其他文件使用这个`model`
+
+```js title="user.js" showLineNumbers
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: Number,
+    required: true,
+  },
+  mimeType: {
+    type: String,
+  },
+});
+
+module.exports = mongoose.model("User", userSchema);
+```
+
+我这就不详细说了，现在我的目标就是简单的记录一下，以后详细做一个`mongoose`的使用文档
+
+这个`model`会在`index.js`中使用
+
+```js title="index.js"
+const User = require("../user");
+
+const user = new User(imgObj);
+user.save().then(() => console.log("img saved"));
+```
+
+传入一个对象给`new User()`，就会创建一条记录，使用`save()`来保存这条记录到数据库，它的返回值是一个`promise`
+
+## drag 的一系列事件
+
+**一般绑定给被拖拽的元素的事件**
+
+- dragstart ： 开始拖拽元素的时候触发，只会触发一次
+- drag ： 拖拽过程中一直触发
+- dragend ： 结束拖拽时触发，就是松开鼠标的时候，只会触发一次
+
+\*\*一般绑定给目标区域元素的事件
+
+- dragenter ： 当拖拽元素进入目标区域时触发，只会触发一次
+- dragover ： 当拖拽元素在拖拽目标区域就会一直触发
+- dragleave ： 当拖拽元素离开目标区域时触发，只会触发一次
+- drop ： 当拖拽元素在目标区域取消拖拽时，触发，只会触发一次
+
+这里为什么要区分这些事件时绑定给谁的原因是：这些事件都有一个事件参数，里面有个`event.target`属性可以获取触发这个事件的元素，这个十分关键，我们现在来想一想这样的一个场景，假如你的手上有两个空瓶子，面前有三个垃圾桶，你丢垃圾时，是不是要知道你要丢那个瓶子，和丢到那个垃圾桶，现在就给两个瓶子都绑定上我第一类事件，垃圾桶绑定上第二类事件，瓶子的事件只能获取到瓶子的位置，设置瓶子的拖拽效果，并不能获取到垃圾桶的位置，也就是说它自己不知道自己在那个垃圾桶的上面。垃圾桶的事件也是如此。
+
+现在我们来模拟一下过程，你想把瓶子 1 号扔进垃圾桶 2 号
+
+- 首先你拿起瓶子 1 号，触发了 dragstart 事件，你可以修改瓶子的样式（比如把它捏扁，当然你也可以不这么做。这里有点抽象，你可以想象就是你选中了某个东西，它就会发光之类的）
+- 你拿起瓶子朝着垃圾桶 2 号移动，此时将会一直触发 drag 事件，知道你松手
+- 然后，瓶子进入垃圾桶 2 号的区域，触发 dragenter 事件，你可以设置垃圾桶的样式，
+- 你手把瓶子移到垃圾桶 2 号口的上面，此时瓶子在垃圾桶 2 号的区域移动，触发 dragover 事件，
+- 最后你松开手，瓶子落向垃圾桶 2 号，此时 dragend 和 drop 事件都触发
+
+额，这确实是有点抽象，其实你只需要注意到这些事件的触发时机即可，每个事件被触发时都会执行一个函数，在这个函数里面你可以做很多事，比如设置样式。
+
+:::note
+拖拽的元素你要为它设置`draggable`属性
+:::
+
+这些事件的`event`对象中都有一个`dateTransfer`对象，它有如下属性：
+
+- effectAllowed ：设置拖拽过程中鼠标的显示类型，它有很多值，我这就不细讲了
+- dropEffect ： 设置在目标区域鼠标的显示类型，其实这些都不是很重要，[点击此处，了解更多](https://juejin.cn/post/7002251330727182344)
+- files ： 数组类型，里面的就是`file`对象，拖拽上传文件就是通过它来获取拖拽的文件的
+- items ： 拖拽内容的列表，不太清楚，以后慢慢了解
+
+它还有两个方法（目前我还没有使用过）：
+
+- setData(key, value) ： 用于设置拖拽的数据
+- getData(key) ：用于获取拖拽的数据
+
+## formidable
+
+它是一个用于解析请求体的包，一般在`post`路由中使用它，挺方便的，[formidable](https://www.npmjs.com/package/formidable)
+
+安装
+
+```bash
+npm install formidable
+```
+
+我是在 express 框架中使用的它，记得导入这个包哦
+
+```js
+router.post("/upload/succeed", (req, res) => {
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/images",
+    keepExtensions: true,
+  });
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    files.img.forEach((item) => {
+      const imgObj = {
+        name: item.newFilename,
+        size: item.size,
+        mimeType: item.mimetype,
+      };
+      const user = new User(imgObj);
+      user.save().then(() => console.log("img saved"));
+    });
+    res.json({ fields, files });
+  });
+});
+```
