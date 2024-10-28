@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "bing's website",
-  tagline: 'bing are cool',
+  tagline: 'bing is cool',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -135,6 +135,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages:['bash','powershell'],
         magicComments: [
           {
             className: 'theme-code-block-highlighted-line',

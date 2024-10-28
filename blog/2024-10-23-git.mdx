@@ -1,0 +1,254 @@
+---
+slug: git
+title: 学习git的基本使用
+authors: bing
+tags: [git]
+---
+
+## 安装和初始化配置
+
+### 下载网址：[git download](https://git-scm.com/downloads/win)
+
+### 初始化配置命令
+
+查看git版本号，如果输出对应的版本号，则说明git安装成功
+```bash
+git -v
+```
+
+配置用户信息（名字和邮箱）--> 后续的提交操作会显示这些信息，以确定这个提交是哪个人干的。
+
+```bash
+git config --global user.name "moubing"
+git config --global user.email "xxxx.163.com"
+```
+这里如果字符串没有用空格分开，那么这个引号是可以省略的。
+
+### 初始化仓库
+
+新建一个newdir目录，然后进入这个目录，初始化git仓库
+
+```bash
+mkdir newdir
+cd newdir
+git init
+```
+
+### 工作区域
+
+git的本地数据管理分为三个区域：
+
+- 工作区(working directory)
+- 暂存区(staging area / index)
+- 本地仓库(local repository)
+
+### 文件状态
+
+- 未跟踪(untrack) --> 新建的文件，还没有被git管理的文件
+- 未修改(unmodified) --> 已经被git管理起来，但是文件的内容没有发生变化
+- 已修改(modified) --> 已经修改了，但是还没有添加到暂存区中
+- 已暂存(staged) --> 修改后已经添加到暂存区的文件
+
+### 基本命令
+
+```bash
+# 查看仓库状态
+git status 
+# 将指定文件添加到暂存区
+git add filename
+# 将所有的js文件添加到暂存区
+git add *.js
+# 将当前目录的所有文件添加到暂存区（不包含.gitignore文件中的文件）
+git add .
+# 将暂存区中的东西提交到仓库，并添加提交描述信息
+git commit -m "commit detail"
+# 查看提交历史记录，加上--oneline配置查看简洁的历史记录
+git log
+```
+:::note
+git commit 只会提交暂存区中的文件
+:::
+
+### linux 基本命令
+
+```bash
+# 将“这是写入的内容”写入file1.txt
+echo "这是写入的内容" > file1.txt
+# 累加内容(这两个命令其实是用到了管道，就是> 和 >>)
+echo "累加内容" >> file1.txt
+# 输出文件内容
+cat file1.txt
+```
+
+### 回退版本
+
+```bash
+git reset --soft commitNumber
+git reset --hard commitNumber
+git reset --mixed commitNumber
+```
+
+:::note
+使用HEAD来代替commitNumber，HEAD^上一个提交，HEAD^2上两个提交，以此类推
+:::
+
+它们的相同之处是回退到commitNumber对应的提交，他们的差异如下：
+
+- `git reset --soft`不清空工作区和暂存区，可以理解为撤销当次提交
+- `git reset --hard`清空工作区和暂存区，可以理解为完全丢弃从上次提交以来的所有更改，回到上次提交的初始状态
+- `git reset --mixed`清空暂存区但不清空工作区
+
+:::note
+`git reflog`可以查看到这些包括回滚操作的历史记录
+:::
+
+### 比较差异
+
+它可以用来查看文件在工作区，暂存区以及版本库之间的差异，还可以查看文件在两个特定版本之间的差异，两个分支之间的差异
+
+```bash
+# 什么配置都不加，默认比较的是工作区和暂存区之间的差异
+git diff
+# 比较工作区加暂存区和本地仓库之间的差异
+git diff HEAD
+# 比较暂存区和本地仓库之间的差异
+git diff --cached 
+git diff --staged
+# 比较提交之间的差异
+git diff <commit_hash> <commit_hash>
+git diff HEAD^ HEAD
+# 比较分支之间的差异
+git diff <branch_name> <branch_name>
+```
+
+:::note
+这些有关于git diff的操作最后面都可以加上文件名，然后就会之比较这些文件的差异，举个例子，git diff test.txt，这个命令只会比较工作区和暂存区中test.txt差异。
+:::
+
+### 删除操作
+
+```bash
+# 先从工作区删除文件，然后在暂存区中更新删除内容
+rm <file_name>
+git add <file_name>
+# 把文件从工作区和暂存区中同时删除
+git rm <file_name>
+# 把文件从暂存区中删除，但保留在工作区，其实就相当于不追踪这个文件了
+git rm --cached <file_name>
+```
+
+:::note
+上面的删除操作只是在工作区和暂存区，本地仓库还没有删除，如果想让本地仓库也删除，还需要提交一下
+:::
+
+### .gitignore
+
+应该忽略哪些文件：
+- 系统或者软件自动生成的文件
+- 编译产生的中间文件和结果文件
+- 运行时生成的日志文件、缓存文件、临时文件
+- 涉及身份、密码、口令、密钥等敏感信息文件
+
+.gitignore文件的匹配规则
+- 空行或者以#开头的行会被git忽略。一般空行用于可读性的分隔，#一般用作注释
+- 使用标准的Blob模式匹配：
+        - 星号*通配任意个字符
+        - 问号？匹配单个字符
+        - 中括号[]表示匹配列表中的单个字符 --> [abc]表示a或b或c
+- 两个星号**表示匹配任意的中间目录
+- 中括号可以使用短中线连接 --> [0-9]表示任意一位数字，[a-z]表示任意以为小写字母
+- 感叹号！表示取反
+
+```bash
+# 忽略所有的.a文件
+*.a
+# 但跟踪所有的lib.a，即便你在前面忽略了.a文件
+!lib.a
+# 只忽略当前目录下的TODO文件，而不忽略subdir/TODO
+/TODO
+# 忽略任何目录下名为bulid的文件夹
+build/
+# 忽略所有doc目录下的文件后缀为txt的文件，但不忽略doc/subdir/*.txt
+doc/*.txt
+# 忽略doc目录及其所有子目录下的.pdf文件
+doc/**/*.pdf
+```
+
+:::note
+.gitignore对已经在暂存区，本地仓库中的文件不起作用，git默认是不会将空的文件夹添加到仓库里面的。
+:::
+
+### 关联远程仓库
+
+先生成ssh密钥
+
+```bash
+# 如果没有.ssh目录，就自己创建一个，一般创建在用户目录下
+cd .ssh
+# 生成ssh密钥
+ssh-keygen -c rsa -t 4096 
+# 然后回提示你要将这个密钥保存在那个文件中，默认是用户目录的.ssh/id-rsa
+# 如果是第一次生成这个密钥，那么就用默认的就行了
+# 如果已经用过默认的，这里不更换文件的话，将会把旧的密钥给覆盖了
+# 不想覆盖的话，就输入一个新的文件名就行了
+# 然后需要设置密码
+# 设置好后，打开.ssh/id-rsa.pub，将里面的内容复制到github中即可 
+
+# 如果不是第一次生成这个ssh密钥，后面生成的文件为test
+# 还需要进行配置，在.ssh/config文件中新增如下内容（如果没有config文件就自己新建一个）
+
+# github
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/test
+```
+
+### 使用克隆的方式来下载仓库的推送和拉取
+
+```bash
+git clone <repo_address>
+git push <remote_repo> <branch>
+git pull <remote_repo>
+```
+
+### 已存在本地仓库
+
+```bash
+# 关联远程仓库
+git remote add <alias_name> <repo_address>
+# 查看关联了哪些远程仓库（关联的远程仓库可以有多个）
+git reomte -v
+# 更改当前分支名(可选)
+git branch -M main
+# 推送 第一个main --> 本地分支， 第二个main --> 远程分支
+git push -u origin main:mian
+# 拉取 第一个main --> 远程分支， 第二个main --> 本地分支
+git pull origin main:main
+```
+
+### 分支
+
+```bash
+# 查看分支列表
+git branch
+# 创建分支
+git branch <branch_name>
+# 切换分支
+git switch <branch_name>
+# 合并分支，当前分支和<branch_name>
+git merge <branhc_name>
+# 删除分支 -d表示删除已合并的分支，-D表示删除为合并的分支
+git branch -d <branch_name>
+git branch -D <branch_name>
+# 快捷操作，创建并切换到该分支
+git switch -c <branch_name>
+```
+
+
+
+
+
+
+
+
