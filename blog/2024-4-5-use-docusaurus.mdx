@@ -2,10 +2,8 @@
 slug: use-docusaurus
 title: 部署docusaurus的心酸历程
 authors: bing
-tags: [部署网站, 无语, 小脑萎缩]
+tags: [部署网站]
 ---
-
-今天部署这个docusaurus弄了好久，导致这个的原因是我竟然忘记保存配置文件了，what the fuck!!!🤣🤣🤣就像是失去神经🤪，我感觉不到呼吸🤪，连空气都窒息🤪，why，why，I love you so！每秒钟胆颤心惊🤡，迎战你给的惊奇🤡，你与众不同的🤡 love,love,I want to girl!
 
 **我现在来回顾一下这个网站是怎么部署的**
 
@@ -18,8 +16,10 @@ npx create-docusaurus@latest my-website classic
 ```
 
 :::info
-你需要安装node，并且版本不低于18.0
+你需要安装 node，并且版本不低于 18.0
 :::
+
+{/* truncate */}
 
 然后你可以需要进入该文件夹，使用`cd my-website`，`docusaurus`提供了很多方便快捷的命令：
 
@@ -40,30 +40,29 @@ npm run deploy
 
 ```js
 const config = {
-    // 网站首页的title，不知道是什么就自己改一下
-    title: "bing'swebsite", 
-    // 网站首页title下面的话
-    tagline: 'bing are cool', 
-    // 网站的图标，就是tab上的那个小鳄鱼
-    favicon: 'img/favicon.ico',
-    // 注意换成你的域名
-    url: 'https://moubing.github.io/',
-    // 设置网站的根路径，其实我也不太懂，管他的随便写了
-    baseUrl: '/', 
-    // 写你的github账号名称
-    organizationName: 'moubing', 
-    // 写你的仓库名称
-    project: 'moubing.github.io', 
-    // 以前的版本需要这句话，但是我看了官方文档，新的版本你可以不写，gh-pages是默认值
-    deploymentBranch: 'gh-pages', 
-    i18n: {
-        // i18n全称internationalization，国际化的意思
-        // 它会影响时间和其他东西的格式
-        defaultLocale: 'zh',
-        locales: ['zh']
-    }
-
-}
+  // 网站首页的title，不知道是什么就自己改一下
+  title: "bing'swebsite",
+  // 网站首页title下面的话
+  tagline: "bing are cool",
+  // 网站的图标，就是tab上的那个小鳄鱼
+  favicon: "img/favicon.ico",
+  // 注意换成你的域名
+  url: "https://moubing.github.io/",
+  // 设置网站的根路径，其实我也不太懂，管他的随便写了
+  baseUrl: "/",
+  // 写你的github账号名称
+  organizationName: "moubing",
+  // 写你的仓库名称
+  project: "moubing.github.io",
+  // 以前的版本需要这句话，但是我看了官方文档，新的版本你可以不写，gh-pages是默认值
+  deploymentBranch: "gh-pages",
+  i18n: {
+    // i18n全称internationalization，国际化的意思
+    // 它会影响时间和其他东西的格式
+    defaultLocale: "zh",
+    locales: ["zh"],
+  },
+};
 ```
 
 :::note
@@ -75,7 +74,7 @@ const config = {
 按理来说，这已经算是弄好了，你可以试着在浏览器上输入你的域名看看
 
 :::warning[这个很重要，我就是在这*浪费了很多时间*，还是细心一点]
-修改完`docusaurus.config.js`文件后记得保存，保存在进行后面的操作，我就是因为没有保存，一直在那瞎搞，原本最开始就弄的差不多了😖😖😖
+修改完`docusaurus.config.js`文件后记得保存，保存在进行后面的操作，我就是因为没有保存，一直在那瞎搞，原本最开始就弄的差不多了 😖😖😖
 :::
 
 当然还可能遇到一些问题，比如：
@@ -96,10 +95,4 @@ fatal: unable to access 'https://github.com/facebook/docusaurus.git
 它说无法进入这个仓库（上面的仓库只是一个示例，你的情况可能不同），这就是仓库写错了，写成其他的仓库了，其他人的仓库你不能随便`push`，你没有权限
 :::
 
-搞这个的时候在播放潘玮柏的《U U U》,我搞完的时候也恰好放这首歌，这歌的歌词怎么这么符合我的心情，I'm crazy over u u u u u🤪， 如此疯狂的中了do do do do do🥰， I'm going crazy over u u u u u🤪， cause this is all about u oh yeah🥳 yeah🥳!!!
-
-
-
-
-
-
+搞这个的时候在播放潘玮柏的《U U U》,我搞完的时候也恰好放这首歌，这歌的歌词怎么这么符合我的心情，I'm crazy over u u u u u🤪， 如此疯狂的中了 do do do do do🥰， I'm going crazy over u u u u u🤪， cause this is all about u oh yeah🥳 yeah🥳!!!

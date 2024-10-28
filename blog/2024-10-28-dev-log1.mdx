@@ -1,0 +1,37 @@
+---
+slug: dev-log1
+title: 开发日志1
+authors: bing
+tags: [dev, webgis]
+---
+
+import { LayoutExample } from "../src/components/LayoutExample";
+
+## 已完成的任务
+
+1. 搞定整体的 ui 布局
+2. 通过 localStroge 和 cookie 实现布局的持久化（刷新或关闭浏览器不会重置布局）
+3. 重构之前的代码
+4. 调整部分组件的挂载位置
+
+这段时间的主要进度就是搞定 ui 布局，基本布局就跟下面这个是示例一样，拖动间隙即可改变这些块的大小
+
+<LayoutExample />
+<br />
+
+这个项目目前开发的样子如下，左上角的五个按钮是下拉菜单。
+
+![current](../static/img/current.png)
+
+:::tip 注意
+很多地方都不能点，只是相当与一个占位符，还没有添加对应的功能 🤣。地图下面的那个显示选中要素的属性的表格太过生草（字段都没对不齐）🤣。
+:::
+
+网站已经部署好了 🥳🥳，[点击进入 demo，试一试](https://web-i5vvmbgfx-moubings-projects.vercel.app/test)
+
+## 下一周的工作计划
+
+1. 添加测距，测面积功能
+2. 添加快捷图层功能
+3. 完善要素属性的显示
+4. 完善下拉菜单中的功能

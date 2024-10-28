@@ -2,7 +2,7 @@
 slug: 01-study-docusaurus
 title: 学习docusaurs的第一天
 authors: bing
-tags: [tab, codeBlocks, admonitions]
+tags: [markdown]
 ---
 
 ## `<Tabs>`和`<TabItem>`
@@ -10,33 +10,47 @@ tags: [tab, codeBlocks, admonitions]
 首先介绍一下`<Tabs>`组件,还是一个挺好用的组件,下面是它的简单示例:
 
 ```jsx title="example.mdx" {1,2,5-7} showLineNumbers
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs>
-    <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem value="peach" label="桃子">这是一个橘子🍊</TabItem>
-</Tabs>
+  <TabItem value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem value="peach" label="桃子">
+    这是一个橘子🍊
+  </TabItem>
+</Tabs>;
 ```
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs>
-    <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem value="peach" label="桃子">这是一个橘子🍊</TabItem>
+  <TabItem value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem value="peach" label="桃子">
+    这是一个橘子🍊
+  </TabItem>
 </Tabs>
+
+{/* truncate */}
 
 ### `groupId`
 
-当你的mdx文件中有多个`<Tabs>`组件时,你可以使用`groupId`将它们进行关联,`groupId`相同的`<Tabs>`就会自动关联关联的用处就是当一个.例如你现在有tab1和tab2两个选项卡，它们的值的情况如下:
+当你的 mdx 文件中有多个`<Tabs>`组件时,你可以使用`groupId`将它们进行关联,`groupId`相同的`<Tabs>`就会自动关联关联的用处就是当一个.例如你现在有 tab1 和 tab2 两个选项卡，它们的值的情况如下:
 
 ```jsx title="groupId" showLineNumbers
 <Tabs groupId="fruit">
     <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
+    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem>
     <TabItem value="orange" label="橘子">这是一个橘子🍊</TabItem>
 </Tabs>
 
@@ -44,21 +58,33 @@ import TabItem from "@theme/TabItem"
 
 <Tabs groupId="fruit">
     <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
+    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem>
     <TabItem value="peach" label="桃子">这是一个桃子🍑</TabItem>
 </Tabs>
 ```
 
 <Tabs groupId="fruit">
-    <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem value="orange" label="橘子">这是一个橘子🍊</TabItem>
+  <TabItem value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem value="orange" label="橘子">
+    这是一个橘子🍊
+  </TabItem>
 </Tabs>
 
 <Tabs groupId="fruit">
-    <TabItem value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem value="peach" label="桃子">这是一个桃子🍑</TabItem>
+  <TabItem value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem value="peach" label="桃子">
+    这是一个桃子🍑
+  </TabItem>
 </Tabs>
 
 :::note
@@ -69,21 +95,33 @@ import TabItem from "@theme/TabItem"
 
 ```jsx title="自定义样式" showLineNumbers
 <Tabs className="my-tabs">
-    <TabItem className="my-tabsItem" value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem className="my-tabsItem" value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem className="my-tabsItem" value="orange" label="橘子">这是一个橘子🍊</TabItem>
+  <TabItem className="my-tabsItem" value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem className="my-tabsItem" value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem className="my-tabsItem" value="orange" label="橘子">
+    这是一个橘子🍊
+  </TabItem>
 </Tabs>
 ```
 
 <Tabs className="my-tabs">
-    <TabItem className="my-tabsItem" value="apple" label="苹果" defualt>这是一个苹果🍎</TabItem>
-    <TabItem className="my-tabsItem" value="banana" label="香蕉">这是一个香蕉🍌</TabItem> 
-    <TabItem className="my-tabsItem" value="orange" label="橘子">这是一个橘子🍊</TabItem>
+  <TabItem className="my-tabsItem" value="apple" label="苹果" defualt>
+    这是一个苹果🍎
+  </TabItem>
+  <TabItem className="my-tabsItem" value="banana" label="香蕉">
+    这是一个香蕉🍌
+  </TabItem>
+  <TabItem className="my-tabsItem" value="orange" label="橘子">
+    这是一个橘子🍊
+  </TabItem>
 </Tabs>
 
 ```css title="css样式" showLineNumbers
 .my-tabs {
-  color: red; 
+  color: red;
 }
 
 .my-tabsItem {
@@ -91,8 +129,8 @@ import TabItem from "@theme/TabItem"
 }
 ```
 
-:::note 
-我的css样式是写在`src/css/constom.css`中的,这里面的样式是全局的,所以没有引入css文件的代码,我也只是图个省事,你也可以自己创建一个css文件,自己引入,就像这样:`import <class> from '<your css file path>'`
+:::note
+我的 css 样式是写在`src/css/constom.css`中的,这里面的样式是全局的,所以没有引入 css 文件的代码,我也只是图个省事,你也可以自己创建一个 css 文件,自己引入,就像这样:`import <class> from '<your css file path>'`
 :::
 
 ## `code blocks`
@@ -102,8 +140,8 @@ import TabItem from "@theme/TabItem"
 - language : 指定变成语言,将代码渲染成这个语言的样式(不是所有的编程语言都支持)
 - title : 用来制定代码块的标题
 - highlighting : 使代码块中的某些代码高亮
-    - metadata string : 使用`{1,3-5}`这种形式来高亮
-    - magic comments : 使用魔力注释来高亮
+  - metadata string : 使用`{1,3-5}`这种形式来高亮
+  - magic comments : 使用魔力注释来高亮
 - showLineNumbers : 显示行号
 
 ````
@@ -129,6 +167,7 @@ console.log("hello world")
 ### 使用注释高亮代码
 
 你也可以使用注释来高亮对应的代码行:
+
 - highlight-next-line : 高亮下一行代码
 - highlight-start, highlight-end : 高亮这两句注释所包含的代码块
 
@@ -185,8 +224,8 @@ const example = {
 - className : 指定魔力注释的样式
 - line : 注释生效的语句,就好比你要高亮,你就要写`highlight-next-line`这句话
 - block : 指定一个对象,它有两个键
-    - start : 起始位置的语句
-    - end : 终止位置的语句
+  - start : 起始位置的语句
+  - end : 终止位置的语句
 
 <Tabs>
     <TabItem value='new magic comment' label="docusaurus.config.js">
@@ -211,9 +250,9 @@ const example = {
     </TabItem>
 
     <TabItem value="example.md" label="example.md">
-    
+
     ````
-    ```js 
+    ```js
     const num = 3
     // this will error
     num = 4
@@ -233,8 +272,8 @@ const example = {
     </TabItem>
 
     <TabItem value="custom.css" label="custom.css">
-    
-    ```css 
+
+    ```css
     .code-block-error-line {
         background-color: #ff000020;
         display: block;
@@ -245,19 +284,20 @@ const example = {
     ```
 
     </TabItem>
+
 </Tabs>
 
-```js 
-const num = 3
+```js
+const num = 3;
 // this will error
-num = 4
+num = 4;
 // 常量的值不能改变
 // error-start
-let noMoney = true
-if(noMoney === true) {
-    console.log('我没钱了')
+let noMoney = true;
+if (noMoney === true) {
+  console.log("我没钱了");
 } else {
-    console.log('我有钱了')
+  console.log("我有钱了");
 }
 // error-end
 ```

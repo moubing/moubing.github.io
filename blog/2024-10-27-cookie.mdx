@@ -1,0 +1,131 @@
+---
+slug: cookie
+title: 学习cookie的基本使用
+authors: bing
+tags: [cookie]
+---
+
+## 跨站和跨域
+
+### 跨站
+
+只要顶级域名和二级域名相同就可以认为是同站
+
+例如：a.com 和 a.a.com 就是同站，但是 b.com 和 a.com 就算是跨站了
+
+### 跨域
+
+只要两个 url 的协议，域名和端口号其中有一个或多个不同，那么就是为跨域了
+
+下面是一些跨域的示例：
+
+1. 协议不同：http://a.com:3000和https://a.com:3000
+2. 域名不同：http://a.com:3000和http://b.com:3000
+3. 端口不同：http://a.com:3000和http://a.com:9000
+
+在浏览器中对跨域的判断要比跨站的判断严格很多
+
+{/* truncate */}
+
+## 在浏览器中对 cookie 的操作
+
+### 新增 cookie
+
+cookie 就是一个字符串，但是它有一些规则，这个字符串大致是这个样子的：
+
+'key1=value1;attribute1=value2;atrribute2=value3;'
+
+```js
+document.cookie = "myname=bing";
+```
+
+### 修改 cookie
+
+它和新增操作是相同的，如果已经存在相同 key 的 cookie，那么就变更这个 cookie 的值，如果不存在，那么就新增 cookie
+
+```js
+// 以前的值bing --> 现在的值moubing
+document.cookie = "myname=moubing";
+```
+
+### 删除 cookie
+
+删除 cookie 只需要只需要指定 key，然后加上配置 max-age 的值为负数
+
+```js
+document.cookie = "myname=;max-age=-1";
+```
+
+### 快速获取所有 cookie 的值
+
+```js
+document.cookie.split(";").reduce((acc, cur) => {
+  const [key, value] = cur.split("=");
+  acc[key] = value;
+  return acc;
+}, {});
+```
+
+## cookie 属性
+
+### domain
+
+domain 里面不携带协议和端口，它的取值为： - a.com --> 只作用于当前域名，不包含当前域名的子域名 - .a.com --> 作用域当前域名以及其子域名
+
+举个例子：如果在 a.com 定义了如下两个 cookie
+
+```js
+// 如果不设置domain，那么就取默认值a.com
+// 设置domain的值为a.com和设置值为.a.com的效果相同
+document.cookie = "firstname=mou;";
+documnet.cookie = "lastname=bing;domain=a.com";
+// document.cookie = 'lastname=bing;domain=.a.com'
+```
+
+然后，在 a.com 中，你能看到这两个 cookie，在 sub.a.com 你只能看到 lastname 这个 cookie
+
+:::note
+在子域名中设置的 domain 为.a.com 的 cookie，在整个 a.com 以及其所有子域名中都可以被访问
+:::
+
+### path
+
+```js
+// 这个cookie在路由/a以及其子路由可以被访问
+document.cookie = "myname=moubing;path=/a";
+```
+
+### expires 和 max-age
+
+- expires --> 在指定时间失效
+- max-age --> 在多少秒后失效
+
+如果这两个属性都设置了，那么 max-age 的优先级更高
+
+如果设置 expires 为以前的日期和设置 max-age 为 0 或负值都表示删除这个 cookie
+
+:::note
+如果一个 cookie 既没有设置 expires 又没有设置 max-age，那么这个 cookie 就是一个会话 cookie，当浏览器关闭时，这个 cookie 就没了
+:::
+
+### httponly
+
+httponly 是和 cookie 的安全性紧密相关的属性，它只能是由服务端通过相应标头中的 set-cookie 种在浏览器上
+
+拥有 httponly 的 cookie 不能被 javascript 操作
+
+### secure
+
+secure 这个属性用来告诉浏览器这个 cookie 只能用在 https 协议传输上。
+
+### samesite
+
+samesite 属性有三个取值：
+
+- None --> 不论是否跨站都发送 cookie
+- Strict --> 跨站不带 cookie
+- Lax(默认值) --> 部分情况下携带 cookie
+
+:::note
+samesite 只有在跨站请求的时候才会起作用
+:::

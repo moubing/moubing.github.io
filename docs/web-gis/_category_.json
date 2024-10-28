@@ -1,0 +1,8 @@
+{
+  "label": "WebGIS - Help",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "WebGIS的帮助文档"
+  }
+}
