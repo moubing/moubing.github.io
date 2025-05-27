@@ -2,11 +2,505 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://moubing.github.io/blog</id>
     <title>bing's website Blog</title>
-    <updated>2024-11-11T00:00:00.000Z</updated>
+    <updated>2025-05-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://moubing.github.io/blog"/>
     <subtitle>bing's website Blog</subtitle>
     <icon>https://moubing.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[前端面试]]></title>
+        <id>https://moubing.github.io/blog/interview</id>
+        <link href="https://moubing.github.io/blog/interview"/>
+        <updated>2025-05-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[这里列举了一些常见的前端面试问题]]></summary>
+        <content type="html"><![CDATA[<p>这里列举了一些常见的前端面试问题</p>
+<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="css-和盒子模型box-sizing">css 和盒子模型（box-sizing）<a href="https://moubing.github.io/blog/interview#css-%E5%92%8C%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8Bbox-sizing" class="hash-link" aria-label="css 和盒子模型（box-sizing）的直接链接" title="css 和盒子模型（box-sizing）的直接链接">​</a></h3>
+<ul>
+<li>标准盒子模型（content-box）： margin + border + padding + content</li>
+<li>IE 盒子模型（border-box）： margin + content(这个 content 就是上面盒子模型的后面三个)
+所以设置盒子的 width 和 height 属性是，不同的盒子模型有不同的计算结果，如果设置高度和宽度都为 200px，标准盒子模型会设置 content 的宽高为 200px，IE 盒子模型则是设置 border，padding 和 content 的宽高和为 200px，所以在视觉上标准盒子会比 IE 盒子大</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="css-选择器的优先级">css 选择器的优先级<a href="https://moubing.github.io/blog/interview#css-%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7" class="hash-link" aria-label="css 选择器的优先级的直接链接" title="css 选择器的优先级的直接链接">​</a></h3>
+<ul>
+<li>
+<p>在写 css 样式的时候，会给同一个元素添加多个样式，此时可能会发生样式冲突，发生冲突后，那个选择器的优先级高就显示该选择器的样式。</p>
+</li>
+<li>
+<p>!important &gt; 行内样式 &gt; id &gt; 类、伪类、属性 &gt; 标签</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="隐藏元素的方法">隐藏元素的方法<a href="https://moubing.github.io/blog/interview#%E9%9A%90%E8%97%8F%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95" class="hash-link" aria-label="隐藏元素的方法的直接链接" title="隐藏元素的方法的直接链接">​</a></h3>
+<ul>
+<li>display<!-- -->:none<!-- -->（元素从文档流中消失，不占据页面空间）</li>
+<li>opacity: 0 （元素只是不可见，依旧占据页面空间，可以相应事件）</li>
+<li>visibility: hidden</li>
+<li>position: absolute （将元素定位到视口外面）</li>
+<li>clip-path（将元素剪切掉）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="px-和-rem-的区别">px 和 rem 的区别<a href="https://moubing.github.io/blog/interview#px-%E5%92%8C-rem-%E7%9A%84%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="px 和 rem 的区别的直接链接" title="px 和 rem 的区别的直接链接">​</a></h3>
+<ul>
+<li>px 是绝对单位长度，是显示器给我们呈现画面的像素</li>
+<li>rem 是相对单位，它是相对于 html 根节点的 font-size 的值，默认是 1rem = 16px</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重绘和重排有什么区别">重绘和重排有什么区别<a href="https://moubing.github.io/blog/interview#%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="重绘和重排有什么区别的直接链接" title="重绘和重排有什么区别的直接链接">​</a></h3>
+<ul>
+<li>重排（回流）： 布局引擎会根据所有的样式计算出盒模型在页面上的位置和大小</li>
+<li>重绘：计算好盒模型的位置、大小和其他的一些属性之后， 浏览器会根据盒模型的特性进行绘制</li>
+<li>对 DOM 的大小、位置等样式的读取或者修改，浏览器需要重新计算元素的这些几何属性，这就叫做重排</li>
+<li>对 DOM 的一些不影响布局的样式进行修改，比如 color，浏览器不需要重新计算 DOM 的几何属性，只需要重新绘制该元素的新样式，这里就只出发了重绘</li>
+<li>重排一定触发重绘，重绘不一定出发重排</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="让一个元素水平垂直居中的方法">让一个元素水平垂直居中的方法<a href="https://moubing.github.io/blog/interview#%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95" class="hash-link" aria-label="让一个元素水平垂直居中的方法的直接链接" title="让一个元素水平垂直居中的方法的直接链接">​</a></h3>
+<ul>
+<li>定位+margin --&gt; 子元素 absolute， margin 为 auto，left，right 这些都为 0</li>
+<li>定位+transform --&gt; 子元素 absolute，left: 50%, top: 50%, transform: translate(-50%, -50%)</li>
+<li>flex 布局</li>
+<li>grid 布局</li>
+<li>table 布局</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="css-有哪些属性可以继承那些不可以">css 有哪些属性可以继承那些不可以<a href="https://moubing.github.io/blog/interview#css-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E7%BB%A7%E6%89%BF%E9%82%A3%E4%BA%9B%E4%B8%8D%E5%8F%AF%E4%BB%A5" class="hash-link" aria-label="css 有哪些属性可以继承那些不可以的直接链接" title="css 有哪些属性可以继承那些不可以的直接链接">​</a></h3>
+<ul>
+<li>关于字体 font、文本 line-height、元素的可见性、列表的属性、list-style 这些，color 什么的</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="预处理器">预处理器<a href="https://moubing.github.io/blog/interview#%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8" class="hash-link" aria-label="预处理器的直接链接" title="预处理器的直接链接">​</a></h3>
+<ul>
+<li>SASS、LESS 增加了变量，函数等强大的功能，</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="js-有哪些内容">JS 有哪些内容<a href="https://moubing.github.io/blog/interview#js-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%86%85%E5%AE%B9" class="hash-link" aria-label="JS 有哪些内容的直接链接" title="JS 有哪些内容的直接链接">​</a></h3>
+<ul>
+<li>ECMAScript：它是 js 的核心内容，描述了语言的基础语法和数据结构</li>
+<li>文档对象模型（DOM）：DOM 把整个 html 页面规划成元素构成的文档，提供一些操作元素的方法</li>
+<li>浏览器对象模型（BOM）：对浏览器窗口进行方位和操作</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="js-有哪些内置的对象">JS 有哪些内置的对象<a href="https://moubing.github.io/blog/interview#js-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%86%85%E7%BD%AE%E7%9A%84%E5%AF%B9%E8%B1%A1" class="hash-link" aria-label="JS 有哪些内置的对象的直接链接" title="JS 有哪些内置的对象的直接链接">​</a></h3>
+<ul>
+<li>String Boolean Number Array Object Function Math Date RegExp...</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="操作数组的方法有哪些">操作数组的方法有哪些<a href="https://moubing.github.io/blog/interview#%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B" class="hash-link" aria-label="操作数组的方法有哪些的直接链接" title="操作数组的方法有哪些的直接链接">​</a></h3>
+<ul>
+<li>push() pop() splice() unshift() shift() reverse() concat() join() map() filter() every() some() reduce() find() findIndex()...</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="js-对数据类的检测方式有哪些">JS 对数据类的检测方式有哪些<a href="https://moubing.github.io/blog/interview#js-%E5%AF%B9%E6%95%B0%E6%8D%AE%E7%B1%BB%E7%9A%84%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B" class="hash-link" aria-label="JS 对数据类的检测方式有哪些的直接链接" title="JS 对数据类的检测方式有哪些的直接链接">​</a></h3>
+<ul>
+<li>typeof 对基本数据类型没问题，遇到引用数据类型不管用，
+console.log(typeof 666) //Number
+console.log(typeof [1,3,2]) // Object</li>
+<li>instanceof 只能判断引用数据类型，不能判断基础数据类型
+console.log([] instanceof Array) // true
+console.log( 'abc' instanceof String) // false</li>
+<li>constructor 几乎可以判断基本数据类型和引用数据类型，但是它可以被修改</li>
+<li>Object.prototype.toString.call()
+const opt = Object.prototype.toString
+console.log(opt.call(2)) // Number
+console.log(opt.call(true)) // Boolean
+console.log(opt.call('aaa')) // String
+console.log(opt.call([])) // Array
+console.log(opt.call(<!-- -->)) // Object</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="说一下闭包-闭包有什么特点">说一下闭包， 闭包有什么特点<a href="https://moubing.github.io/blog/interview#%E8%AF%B4%E4%B8%80%E4%B8%8B%E9%97%AD%E5%8C%85-%E9%97%AD%E5%8C%85%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9" class="hash-link" aria-label="说一下闭包， 闭包有什么特点的直接链接" title="说一下闭包， 闭包有什么特点的直接链接">​</a></h3>
+<ul>
+<li>什么是闭包？函数嵌套函数，内部函数被外部函数返回并保存下来时，就会产生闭包</li>
+<li>特点：可以重复利用变量，并且这个变量不会污染全局的一种机制，这个变量一直保存在内存中，不会被垃圾回收机制回收</li>
+<li>缺点：闭包较多的时候，会消耗内存，导致页面的性能下降，在 IE 浏览器中才会导致内存泄漏
+使用场景： 防抖，节流，函数嵌套函数避免全局污染的时候</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="前端的内存泄漏怎么理解">前端的内存泄漏怎么理解？<a href="https://moubing.github.io/blog/interview#%E5%89%8D%E7%AB%AF%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3" class="hash-link" aria-label="前端的内存泄漏怎么理解？的直接链接" title="前端的内存泄漏怎么理解？的直接链接">​</a></h3>
+<ul>
+<li>js 里已经分配内存地址的对象，但是由于长时间没有释放或者没办法清楚，造成长期占用内存的现象，会让内存资源大幅浪费，最终导致运行速度慢，甚至崩溃的情况。</li>
+<li>原因： 一些未清空的定时器，过度的闭包，一些引用元素没有被清除</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="事件委托">事件委托<a href="https://moubing.github.io/blog/interview#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98" class="hash-link" aria-label="事件委托的直接链接" title="事件委托的直接链接">​</a></h3>
+<ul>
+<li>也叫做事件代理，原理就是利用了事件冒泡机制，把子元素的事件绑定到了父元素的身上，如果子元素阻止了事件冒泡，那么委托也就不成立了（使用 event.stopPropagation()）来阻止事件冒泡。</li>
+<li>addEventListener('click', funciton, true/false) 默认是 false（事件冒泡）， ture（事件捕获）</li>
+<li>好处：提高性能，减少事件的绑定，也就减少了内存的占用</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="基本数据类型和引用数据类型">基本数据类型和引用数据类型<a href="https://moubing.github.io/blog/interview#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B" class="hash-link" aria-label="基本数据类型和引用数据类型的直接链接" title="基本数据类型和引用数据类型的直��接链接">​</a></h3>
+<ul>
+<li>基本数据类型：String Number Boolean undefined null
+基本数据类型保存在栈内存中，保存的就是一个具体的值</li>
+<li>引用数据类型： Object Function Array
+保存在堆内存中，生命一个引用类型的变量，它保存的事引用类型数据的地址
+假如生命两个引用类型的变量同时指向了一个地址的时候，修改其中一个那么另外一个也会改变</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="说一下原型链">说一下原型链<a href="https://moubing.github.io/blog/interview#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%9E%8B%E9%93%BE" class="hash-link" aria-label="说一下原型链的直接链接" title="说一下原型链的直接链接">​</a></h3>
+<p>原型就是一个普通对象，它是为构造函数的实例共享属性和方法；所有实例中引用的原型都是同一个对象，使用 prototype 可以把方法挂在原型上，内存只保存一份。<strong>proto</strong>可以理解为指针，实例对象中的属性，指向了构造函数的原型（prototype）</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="new-操作符具体做了什么">new 操作符具体做了什么<a href="https://moubing.github.io/blog/interview#new-%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%85%B7%E4%BD%93%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88" class="hash-link" aria-label="new 操作符具体做了什么的直接链接" title="new 操作符具体做了什么的直接链接">​</a></h3>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    funciton </span><span class="token function" style="color:#d73a49">newFun</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter maybe-class-name">Fun</span><span class="token parameter punctuation" style="color:#393A34">,</span><span class="token parameter"> </span><span class="token parameter spread operator" style="color:#393A34">...</span><span class="token parameter">args</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// 1. 先创建一个空对象</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> newObj </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// 2. 把空对象和构造函数通过原型链进行链接</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        newObj</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">__propto__</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token class-name">Fun</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">prototype</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// 3. 把构造函数的this绑定到新的空对象上</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token maybe-class-name">Fun</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">apply</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">newObj</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> args</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token comment" style="color:#999988;font-style:italic">// 4. 根据构造函数返回的类型判断，如果是值类型，则返回对象，如果是引用类型，就要返回这个引用类型</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> result </span><span class="token keyword" style="color:#00009f">instanceof</span><span class="token plain"> </span><span class="token class-name">Object</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">?</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> newObj</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    funciton </span><span class="token function maybe-class-name" style="color:#d73a49">Person</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">name</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">name</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> name</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token class-name">Person</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">prototype</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">say</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">funciton</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">'123456'</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> p1 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">newFun</span><span class="token punctuation" style="color:#393A34">(</span><span class="token maybe-class-name">Person</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'Alan'</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    p1</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">say</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token console class-name">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">p1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="js-的继承">js 的继承<a href="https://moubing.github.io/blog/interview#js-%E7%9A%84%E7%BB%A7%E6%89%BF" class="hash-link" aria-label="js 的继承的直接链接" title="js 的继承的直接链接">​</a></h3>
+<ul>
+<li>原型链继承， 让一个构造函数的原型是另一个类型的实例， 那么这个构造函数 new 出来的实例就具有该实例的属性</li>
+<li>优点：写法方便简洁，容易理解</li>
+<li>缺点：对象实例共享所有继承的属性和方法，无法向父类构造函数传参</li>
+<li>借用构造函数继承，在子类型构造函数的内部调用父类型构造函数，使用 apply()或 call()方法将父对象的构造函数绑定在子对象上。</li>
+<li>优点：解决了原型链实现继承不能传参的问题和父类的原型共享的问题</li>
+<li>缺点：借用构造函数的缺点是方法都在构造函数中定义，因此无法实现函数复用。在父类型的原型中定义的方法，对子类而言也是不可见的，结果所有类型都只能使用构造函数模式</li>
+<li>组合继承，将原型链和借用构造函数组合到一块。使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有自己的属性</li>
+<li>优点：就是解决了原型链继承和借用构造函数造成的影响。</li>
+<li>缺点：无论在什么情况下，都会调用两次父类构造函数，一次是在创建子类原型的时候，另一次是在子类构造函数内部</li>
+<li>ES6 class 实现继承， class 通过 extends 关键字实现继承，其实质是先创造出父类的 this 对象，然后用子类的构造函数修改 this。子类的构造方法中必须调用 super 方法，且只有在调用 super()之后才能使用 this，因为子类的 this 对象是继承父类的 this 对象，然后对齐进行加工，而 super 方法表示的是父类的构造函数，用来新建父类的 this 对象</li>
+<li>优点：语法简单易懂，操作更方便</li>
+<li>缺点：并不是所有的浏览器都支持 class 关键字</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="js-中关于-this-指向的问题">js 中关于 this 指向的问题<a href="https://moubing.github.io/blog/interview#js-%E4%B8%AD%E5%85%B3%E4%BA%8E-this-%E6%8C%87%E5%90%91%E7%9A%84%E9%97%AE%E9%A2%98" class="hash-link" aria-label="js 中关于 this 指向的问题的直接链接" title="js 中关于 this 指向的问题的直接链接">​</a></h3>
+<ul>
+<li>普通函数里面的 this 指向 window</li>
+<li>如果函数是对象中的一个属性，this 指向调用它的对象</li>
+<li>作为构造函数使用，this 指向创建的实例对象</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="script-标签里的-async-和-defer-有什么区别">script 标签里的 async 和 defer 有什么区别<a href="https://moubing.github.io/blog/interview#script-%E6%A0%87%E7%AD%BE%E9%87%8C%E7%9A%84-async-%E5%92%8C-defer-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="script 标签里的 async 和 defer 有什么区别的直接链接" title="script 标签里的 async 和 defer 有什么区别的直接链接">​</a></h3>
+<ul>
+<li>无 async/defer：浏览器在解析 HTML 过程中遇到没有这两个属性的脚本时，会立即停止对 HTML 的解析，转而去下载并执行脚本，执行完成后才会继续解析 HTML。脚本会按照在 HTML 中出现的顺序依次下载并执行，前一个脚本执行完才会处理下一个。脚本执行时，可能 DOM 还没有完全解析完成，所以不能保证可以访问到完整的 DOM。</li>
+<li>async：脚本的下载是异步进行的，不会阻塞 HTML 的解析。一旦脚本下载完成，浏览器会立即暂停 HTML 解析，执行脚本，执行完毕后再继续解析 HTML。各个脚本的下载和执行是相互独立的，因此它们的执行顺序可能和在 HTML 中出现的顺序不一致。脚本执行时，HTML 解析可能还未结束，同样不能保证可以访问到完整的 DOM。</li>
+<li>defer：脚本同样是异步下载，不会阻塞 HTML 解析。不过，脚本会在 HTML 解析完成后、DOMContentLoaded 事件触发前按照在文档中出现的顺序执行。脚本会按照在 HTML 中出现的顺序执行，即使后面的脚本先下载完成，也会等待前面的脚本执行。脚本在 HTML 解析完成后执行，所以可以访问到完整的 DOM。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="settimeout-最小执行时间是多少">setTimeout 最小执行时间是多少<a href="https://moubing.github.io/blog/interview#settimeout-%E6%9C%80%E5%B0%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E6%98%AF%E5%A4%9A%E5%B0%91" class="hash-link" aria-label="setTimeout 最小执行时间是多少的直接链接" title="setTimeout 最小执行时间是多少的直接链接">​</a></h3>
+<p>-setTimeout 的最小执行时间是 4ms
+-setInterval 最小执行时间是 10ms</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="es5-和-es6">ES5 和 ES6<a href="https://moubing.github.io/blog/interview#es5-%E5%92%8C-es6" class="hash-link" aria-label="ES5 和 ES6的直接链接" title="ES5 和 ES6的直接链接">​</a></h3>
+<ul>
+<li>ES5：ECMAScript5，2009 年 ECMAScript 的第五次修订</li>
+<li>ES5：ECMAScript6，2015 年。。。第六次修订</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="es6-的新特性有哪些">ES6 的新特性有哪些<a href="https://moubing.github.io/blog/interview#es6-%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B" class="hash-link" aria-label="ES6 的新特性有哪些的直接链接" title="ES6 的新特性有哪些的直接链接">​</a></h3>
+<ul>
+<li>新增块级作用域（let， const），不能在同一个作用域内重复声明</li>
+<li>新增了定义类的语法糖（class）</li>
+<li>新增了一种基本数据类型（symbol），还有 set，map</li>
+<li>新增了解构赋值</li>
+<li>新增了函数参数的默认值</li>
+<li>给数组新增了 api</li>
+<li>对象和数组新增了拓展运算符</li>
+<li>新增了模块化（import， export）</li>
+<li>新增了 generator</li>
+<li>新增了箭头函数<!-- -->
+<ul>
+<li>不能作为构造函数使用，不能用 new</li>
+<li>箭头函数没有原型</li>
+<li>箭头函数没有 arguments</li>
+<li>箭头函数不能用 call，apply，bind 去改变 this 的指向</li>
+<li>this 指向上层作用域的 this</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="promise">Promise<a href="https://moubing.github.io/blog/interview#promise" class="hash-link" aria-label="Promise的直接链接" title="Promise的直接链接">​</a></h3>
+<ul>
+<li>解决回调地狱的问题</li>
+<li>自身 有all，reject，resolve，race等方法</li>
+<li>原型上有then，catch</li>
+<li>把异步操作队列化</li>
+<li>三种状态：pending（初始状态），fulfilled（操作成功），rejected（操作失败）</li>
+<li>状态一旦改变就不会在变，不可逆</li>
+<li>async await，同步代码做一步操作，两者必须搭配使用</li>
+<li>async表明函数内有异步操作，调用函数会返回promise</li>
+<li>await后面的内容如果是promise那么久返回promise的结果，如果是普通函数就链式调用</li>
+<li>await后的promise如果是reject状态，那种这个async函数都会中断，后面的代码就不执行了。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="callapplybind-三者有什么区别">call，apply，bind 三者有什么区别<a href="https://moubing.github.io/blog/interview#callapplybind-%E4%B8%89%E8%80%85%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="call，apply，bind 三者有什么区别的直接链接" title="call，apply，bind 三者有什么区别的直接链接">​</a></h3>
+<ul>
+<li>都是改变 this 指向和函数的调用，call 和 apply 的功能类似，只是传参的方法不同</li>
+<li>call 传递的是一个参数列表</li>
+<li>apply 传递的事一个数组</li>
+<li>bind 传参后不会立即执行，而是返回一个改变了 this 指向的函数，这个函数还是可以传参的，bind()()</li>
+<li>call 的性能比 apply 好一些</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="用递归的时候有没有遇到什么问题">用递归的时候有没有遇到什么问题<a href="https://moubing.github.io/blog/interview#%E7%94%A8%E9%80%92%E5%BD%92%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E6%B2%A1%E6%9C%89%E9%81%87%E5%88%B0%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98" class="hash-link" aria-label="用递归的时候有没有遇到什么问题的直接链接" title="用递归的时候有没有遇到什么问题的直接链接">​</a></h3>
+<ul>
+<li>如果一个函数内可以调用函数本身，那么这个就是递归函数</li>
+<li>些递归必须要有退出条件 return</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何实现一个深拷贝">如何实现一个深拷贝<a href="https://moubing.github.io/blog/interview#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D" class="hash-link" aria-label="如何实现一个深拷贝的直接链接" title="如何实现一个深拷贝的直接链接">​</a></h3>
+<ul>
+<li>使用拓展运算符，缺点只能实现第一层的深拷贝，当有多层是还是会浅拷贝</li>
+<li>JSON.parse(JSON.stringfy())，不会拷贝内部函数，只要是 json 里面不支持的数据类型都不行</li>
+<li>使用递归函数实现</li>
+</ul>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">   funciton </span><span class="token function" style="color:#d73a49">clone</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">origin</span><span class="token parameter punctuation" style="color:#393A34">,</span><span class="token parameter"> deep</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword" style="color:#00009f">let</span><span class="token plain"> obj </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword control-flow" style="color:#00009f">if</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">origin </span><span class="token keyword" style="color:#00009f">instanceof</span><span class="token plain"> </span><span class="token class-name">Array</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">         obj </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword control-flow" style="color:#00009f">for</span><span class="token punctuation" style="color:#393A34">(</span><span class="token keyword" style="color:#00009f">let</span><span class="token plain"> key </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> origin</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">         </span><span class="token keyword" style="color:#00009f">let</span><span class="token plain"> value </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> origin</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">key</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">         obj</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">key</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">deep </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">typeof</span><span class="token plain"> value </span><span class="token operator" style="color:#393A34">===</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">'object'</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> vlaue </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token keyword null nil" style="color:#00009f">null</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">?</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">clone</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">value</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain">deep</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> value</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword control-flow" style="color:#00009f">return</span><span class="token plain"> obj</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   </span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是事件循环">什么是事件循环<a href="https://moubing.github.io/blog/interview#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF" class="hash-link" aria-label="什么是事件循环的直接链接" title="什么是事件循环的直接链接">​</a></h3>
+<ul>
+<li>主线程、执行栈、任务队列、宏任务、微任务</li>
+<li>主线程先执行同步任务，然后才去执行任务队列里面的任务，如果在执行宏任务之前有微任务，那么先执行微任务，全部执行完之后等待主线程的调用，调用完再去任务队列中查看是否有异步任务，这样一个循环往复的过程就是事件循环</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="ajax-是什么-怎么实现">ajax 是什么， 怎么实现<a href="https://moubing.github.io/blog/interview#ajax-%E6%98%AF%E4%BB%80%E4%B9%88-%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0" class="hash-link" aria-label="ajax 是什么， 怎么实现的直接链接" title="ajax 是什么， 怎么实现的直接链接">​</a></h3>
+<ul>
+<li>创建交互式网页应用的网页开发技术，在不重新加载整个网页的前提下，与服务器交换数据并更新部分内容</li>
+<li>通过 XmlHttpRequert 对象想服务器发送异步请求，然后从服务器拿到数据，最后通过 JS 操作 DOM 更新页面</li>
+</ul>
+<ol>
+<li>创建 XmlHttpRequest 对象，xhr</li>
+<li>通过 xhr 对象里的 open()方法与服务器建立连接</li>
+<li>构建请求所需的数据，并通过 xhr 对象的 send()发送给服务器</li>
+<li>通过 xhr 对象的 onreadystate changes 事件监听服务器和你的通信状态</li>
+<li>接受并处理服务器响应的数据结果</li>
+<li>把处理的数据更新到 html 页面上</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="get-和-post-有什么区别">get 和 post 有什么区别<a href="https://moubing.github.io/blog/interview#get-%E5%92%8C-post-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="get 和 post 有什么区别的直接链接" title="get 和 post 有什么区别的直接链接">​</a></h3>
+<ul>
+<li>get 一般是获取数据，post 一般是提交数据</li>
+<li>get 参数会放在 url 上，所以安全性较差，post 是放在 body 中</li>
+<li>get 请求刷新服务器或退回是没有影响的，post 请求退回时会重新提交数据</li>
+<li>get 请求会被缓存，post 请求不会被缓存</li>
+<li>get 请求会被保存在浏览器历史记录中，post 不会</li>
+<li>get 请求只能进行 url 编码，post 请求支持很多种</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="promise-的内部原理是什么它的优缺点是什么">promise 的内部原理是什么？它的优缺点是什么？<a href="https://moubing.github.io/blog/interview#promise-%E7%9A%84%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%AE%83%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88" class="hash-link" aria-label="promise 的内部原理是什么？它的优缺点是什么？的直接链接" title="promise 的内部原理是什么？它的优缺点是什么？的直接链接">​</a></h3>
+<ul>
+<li>Promise 构造函数接收一个执行器函数 <code>(resolve, reject) =&gt; {}</code>，该函数会立即执。resolve 和 reject 是两个内置函数，用于改变 Promise 的状态。</li>
+<li>then()：注册成功回调（状态变为 fulfilled 时触发）。</li>
+<li>catch()：注册失败回调（状态变为 rejected 时触发）。</li>
+<li>finally()：无论状态如何都会触发。</li>
+<li>Promise 一旦创建就无法中途取消，即使操作不再需要</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="promise-和-async-和-await-的区别是什么">promise 和 async 和 await 的区别是什么<a href="https://moubing.github.io/blog/interview#promise-%E5%92%8C-async-%E5%92%8C-await-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88" class="hash-link" aria-label="promise 和 async 和 await 的区别是什么的直接链接" title="promise 和 async 和 await 的区别是什么的直接链接">​</a></h3>
+<ul>
+<li>都是处理异步请求的方式</li>
+<li>promise 是 ES6，async await 是 ES7</li>
+<li>async await 是基于 promise 实现的，它和 primise 都是非阻塞性的</li>
+<li>promise 的返回对象我们要用 then，catch 方法去处理和捕获异常，并且书写方式是链式，容易造成代码重叠，不好维护，async await 是通过 try catch 进行异常捕获</li>
+<li>async await 最大的优点就是能让代码看起来像同步一样，只要遇到 await 就会立刻返回结果，然后在执行后面的操作</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="浏览器的存储方式有哪些">浏览器的存储方式有哪些<a href="https://moubing.github.io/blog/interview#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B" class="hash-link" aria-label="浏览器的存储方式有哪些的直接链接" title="浏览器的存储方式有哪些的直接链接">​</a></h3>
+<ul>
+<li>
+<p>cookies</p>
+<ul>
+<li>h5 标准前的本地存储方式，兼容性好，请求头自带 cookie，存储量小</li>
+</ul>
+</li>
+<li>
+<p>localstorage （同步的）</p>
+<ul>
+<li>h5 加入的以键值对为标准的方式，操作方便，永久存储，兼容性较好，保存值的类型被限定，浏览器在隐私模式下不可读取，不能被爬虫</li>
+</ul>
+</li>
+<li>
+<p>seesionstorage</p>
+<ul>
+<li>当前页面关闭后就会立刻清理，绘画级别的存储方式</li>
+</ul>
+</li>
+<li>
+<p>indexedDB （异步的）</p>
+<ul>
+<li>h5 标准的存储方式，以键值对进行存储，可以快速读取，适合 web 场景，IndexedDB 是浏览器端存储复杂数据的强大工具，适合需要大量结构化数据存储的应用场景。虽然 API 相对复杂，但提供了事务、索引等数据库级别的功能，是开发离线应用或高性能前端应用的重要选择。与 localStorage 相比，它支持事务操作、索引查询、二进制存储，并且没有存储上限（通常受限于硬盘空间）。</li>
+</ul>
+</li>
+<li>
+<p>token -验证身份的令牌，一般就是用户通过账号密码登录后，服务端把这些凭证通过加密等一系列操作后得到的字符串</p>
+</li>
+<li>
+<p>token 的登录流程</p>
+</li>
+<li>
+<p>客户端用账号密码请求登录</p>
+</li>
+<li>
+<p>服务端收到请求后，需要去验证账号密码</p>
+</li>
+<li>
+<p>验证成功之后，服务端会签发一个 token，把这个 token 发送给客户端</p>
+</li>
+<li>
+<p>客户端收到 token 后保存起来，可以放在 cookie 也可以是 localstorage</p>
+</li>
+<li>
+<p>客户端每次向服务端请求资源的时候，都需要携带这个 token</p>
+</li>
+<li>
+<p>服务端收到请求，接着去验证客户端里的 token，验证成功才会返回客户端请求的数据</p>
+</li>
+<li>
+<p>页面渲染的过程是怎样的</p>
+</li>
+<li>
+<p>用户输入网址，浏览器进行补全</p>
+</li>
+<li>
+<p>进行 dns 解析</p>
+</li>
+<li>
+<p>与服务器建立 tcp 连接</p>
+</li>
+<li>
+<p>发送 http 请求</p>
+</li>
+<li>
+<p>渲染页面</p>
+<ol>
+<li>浏览器会获取 html 和 css 的资源，然后将 html 解析成 DOM 树，将 css 解析成 CSSOM 树</li>
+<li>把 DOM 和 CSSOM 合并成渲染树</li>
+<li>对元素进行布局计算，计算出元素的大小位置</li>
+<li>将每个元素节点渲染到屏幕上</li>
+</ol>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dom-树和渲染树有什么区别">DOM 树和渲染树有什么区别<a href="https://moubing.github.io/blog/interview#dom-%E6%A0%91%E5%92%8C%E6%B8%B2%E6%9F%93%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="DOM 树和渲染树有什么区别的直接链接" title="DOM 树和渲染树有什么区别的直接链接">​</a></h3>
+<ul>
+<li>DOM 树和 HTML 标签是一一对应的，包括 head 和隐藏元素</li>
+<li>渲染树不包含 head 和隐藏元素</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="雪碧图精灵图和-base64-的区别">雪碧图（精灵图）和 base64 的区别<a href="https://moubing.github.io/blog/interview#%E9%9B%AA%E7%A2%A7%E5%9B%BE%E7%B2%BE%E7%81%B5%E5%9B%BE%E5%92%8C-base64-%E7%9A%84%E5%8C%BA%E5%88%AB" class="hash-link" aria-label="雪碧图（精灵图）和 base64 的区别的直接链接" title="雪碧图（精灵图）和 base64 的区别的直接链接">​</a></h3>
+<ul>
+<li>雪碧图：把多张小图整合到一张大图上，利用定位的一些属性把小图显示在页面上，当访问页面可以减少请求，提高加载速度</li>
+<li>base64：将原本的二进制数据转为字符串数据，base64 会和 html css 一起下载到浏览器中，减少请求，减少跨域问题，但是一些低版本不支持，base64 体积比原图大</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="svg-格式">svg 格式<a href="https://moubing.github.io/blog/interview#svg-%E6%A0%BC%E5%BC%8F" class="hash-link" aria-label="svg 格式的直接链接" title="svg 格式的直接链接">​</a></h3>
+<ul>
+<li>基于 xml 语法格式的图像格式，可缩放矢量图，其他图像是基于像素的，SVG 是属于对图像形状的描述，本质是文本文件，体积小，并且不管放大多少倍都不会失真</li>
+</ul>
+<ol>
+<li>SVG 可直接插入页面中，成为 DOM 一部分，然后使用 JS 或 CSS 进行操作 --&gt; <code>&lt;svg&gt;&lt;/svg&gt;</code></li>
+<li>SVG 可作为文件被引入 --&gt; <code>&lt;img src='pic.svg'&gt;</code></li>
+<li>SVG 可以转为 base64 引入页面</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="了解过-jwt-吗">了解过 JWT 吗<a href="https://moubing.github.io/blog/interview#%E4%BA%86%E8%A7%A3%E8%BF%87-jwt-%E5%90%97" class="hash-link" aria-label="了解过 JWT 吗的直接链接" title="了解过 JWT 吗的直接链接">​</a></h3>
+<ul>
+<li>JSON Web Token 通过 JSON 形式作为在 web 应用中的令牌，可以在各方之间安全的把信息作为 JSON 对象传输、授权
+JWT 的认证流程：<!-- -->
+<ol>
+<li>前端把账号密码发送给后端的接口</li>
+<li>后端核对账号密码成功后，把用户 id 等其他信息作为 JWT 负载，把它和头部分别进行 base64 编码拼接后签名，形成一个 JWT</li>
+<li>前端每次请求时都会把 JWT 放在 http 请求头的 Authorization 字段中</li>
+<li>后端检查是否存在，如果存在就验证 JWT 的有效性（签名是否正确，token 是否过期）</li>
+<li>验证通过后后端使用 JWT 中包含的用户信息进行其他的操作，并返回对应结果
+优点：简介、包含性，因为 Token 是 JSON 加密的形式保存在客户端，所以 JWT 是跨语言的，原则上任何 web 形式都支持。</li>
+</ol>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="http-协议规定的协议头和请求头有什么">http 协议规定的协议头和请求头有什么？<a href="https://moubing.github.io/blog/interview#http-%E5%8D%8F%E8%AE%AE%E8%A7%84%E5%AE%9A%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%A4%B4%E5%92%8C%E8%AF%B7%E6%B1%82%E5%A4%B4%E6%9C%89%E4%BB%80%E4%B9%88" class="hash-link" aria-label="http 协议规定的协议头和请求头有什么？的直接链接" title="http 协议规定的协议头和请求头有什么？的直接链接">​</a></h3>
+<ol>
+<li>
+<p>请求头信息：</p>
+<ul>
+<li>Accept：浏览器告诉服务器所支持的数据类型</li>
+<li>Host：浏览器告诉服务器我想访问服务器的那台主机</li>
+<li>referer： 浏览器告诉服务器我是从哪里来的（防盗链）</li>
+<li>User-Agent：浏览器类型、版本</li>
+<li>Date：浏览器告诉服务器我是什么时候访问的</li>
+<li>X-Request-With：连接方式</li>
+<li>Cookie</li>
+</ul>
+</li>
+<li>
+<p>响应头信息：</p>
+<ul>
+<li>Location：这个就是告诉浏览器你要去找谁</li>
+<li>Server：告诉浏览器服务器的类型</li>
+<li>Content-Type：告诉浏览器返回的数据类型</li>
+<li>Refresh：控制定时刷新</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="浏览器的缓存策略">浏览器的缓存策略<a href="https://moubing.github.io/blog/interview#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5" class="hash-link" aria-label="浏览器的缓存策略的直接链接" title="浏览器的缓存策略的直接链接">​</a></h3>
+<ul>
+<li>强缓存：不发起请求，直接使用缓存中的内容，浏览器把 JS，CSS，image 等存到内存中，下次用户访问直接从内存中取，提高性能</li>
+<li>协商缓存：需要想后台发请求，通过判断来决定是否使用协商缓存，如果请求内容没有变化，这返回 304，浏览器就用缓存里的内容</li>
+<li>强缓存的触发：<!-- -->
+<ul>
+<li>http1.0：时间戳响应表头</li>
+<li>http1.1：Cache-Control 响应表头</li>
+</ul>
+</li>
+<li>协商缓存的触发：<!-- -->
+<ul>
+<li>http1.0：请求头：if-modified-since，响应头：last-modified</li>
+<li>http1.1：请求头：if-none-match，响应头：Etag</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="说一下什么是同源策略">说一下什么是同源策略<a href="https://moubing.github.io/blog/interview#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5" class="hash-link" aria-label="说一下什么是同源策略的直接链接" title="说一下什么是同源策略的直接链接">​</a></h3>
+<ul>
+<li>同源策略是浏览器的核心，如果没有这个策略就会遭受网络攻击</li>
+<li>主要指的就是协议+域名+端口号三者一致，若其中一个不一样则不是同源，会产生跨域</li>
+<li>三个允许跨域加载资源的标签：img，link，script</li>
+<li>跨域是可以发送请求的，后端也会正常返回结果，只不过这个结果被浏览器拦截了</li>
+</ul>
+<ol>
+<li>JSONP 利用 script 标签</li>
+<li>CORS 后端实现了 cors，就能跨域，设置一下响应头 acesss-origin 什么什么的</li>
+<li>WebSocket</li>
+<li>反向代理</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="防抖和节流是什么">防抖和节流是什么<a href="https://moubing.github.io/blog/interview#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E6%98%AF%E4%BB%80%E4%B9%88" class="hash-link" aria-label="防抖和节流是什么的直接链接" title="防抖和节流是什么的直接链接">​</a></h3>
+<ul>
+<li>都是应对页面中频繁出发事件的优化方案</li>
+<li>防抖：<!-- -->
+<ol>
+<li>延迟执行：在事件被触发后，延迟 n 毫秒再执行回调函数。</li>
+<li>重置计时器：如果在延迟期间内再次触发事件，则重新计时。</li>
+<li>仅执行最后一次：最终只执行最后一次触发的回调。</li>
+</ol>
+</li>
+<li>使用场景：频繁和服务端交互，搜索框联想，用户输入时，等待输入完成后再触发搜索请求。窗口 resize：避免频繁计算布局，只在窗口调整结束后执行重绘。</li>
+<li>节流：<!-- -->
+<ol>
+<li>固定频率执行：在一定时间间隔内，只执行一次回调函数。</li>
+<li>忽略中间触发：如果在间隔内多次触发事件，只有第一次有效。</li>
+<li>时间窗口控制：通过记录上次执行时间或使用定时器实现。</li>
+</ol>
+</li>
+<li>滚动加载：监听滚动事件，每隔一段时间加载更多内容。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="大文件上传">大文件上传<a href="https://moubing.github.io/blog/interview#%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0" class="hash-link" aria-label="大文件上传的直接链接" title="大文件上传的直接链接">​</a></h3>
+<p>分片上传：</p>
+<ol>
+<li>把需要上传的文件按照一定的规则，分割成相同大小的数据块</li>
+<li>初始化一个分片上传任务，返回本次分片上传的唯一标识</li>
+<li>按照一定的规则把各个数据块上传</li>
+<li>发送完成后，服务端会判断数据上传的完整性，如果完整那么就会把数据合并成原始文件
+断点续传：
+服务端返回，从哪里开始，浏览器自己处理</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="标签语义化的理解">标签语义化的理解<a href="https://moubing.github.io/blog/interview#%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84%E7%90%86%E8%A7%A3" class="hash-link" aria-label="标签语义化的理解的直接链接" title="标签语义化的理解的直接链接">​</a></h3>
+<ul>
+<li>让 html 结构更加清晰明了</li>
+<li>有利于爬虫和 seo</li>
+<li>能够让浏览器更好的解析代码</li>
+<li>给用户带来良好的体验</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="h5c3-有哪些新特性">h5c3 有哪些新特性<a href="https://moubing.github.io/blog/interview#h5c3-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7" class="hash-link" aria-label="h5c3 有哪些新特性的直接链接" title="h5c3 有哪些新特性的直接链接">​</a></h3>
+<ul>
+<li>HTML5<!-- -->
+<ol>
+<li>语义化标签</li>
+<li>新增音频视频</li>
+<li>画布 canvas</li>
+<li>数据存储 localstorage、sessionstorage</li>
+<li>增加了表单控件 emial url search</li>
+<li>拖拽 api
+等等</li>
+</ol>
+</li>
+<li>CSS3<!-- -->
+<ol>
+<li>新增选择器：属性选择器，伪类选择器等</li>
+<li>增加了媒体查询</li>
+<li>文字阴影</li>
+<li>边框</li>
+<li>盒子模型</li>
+<li>渐变</li>
+<li>过渡 transition</li>
+<li>自定义动画</li>
+<li>背景的属性</li>
+<li>2D 和 3D</li>
+</ol>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="webpack-是怎么打包的">webpack 是怎么打包的<a href="https://moubing.github.io/blog/interview#webpack-%E6%98%AF%E6%80%8E%E4%B9%88%E6%89%93%E5%8C%85%E7%9A%84" class="hash-link" aria-label="webpack 是怎么打包的的直接链接" title="webpack 是怎么打包的的直接链接">​</a></h3>
+<ul>
+<li>webpack 会把 js css image 看做一个模块，用 import/require 引入</li>
+<li>找到入口文件，通过入口文件找到关联的依赖文件，把它们打包到一起</li>
+<li>把 bundle 文件，拆分成多个小的文件，异步按需加载所需要的文件</li>
+<li>如果一个文件被多个文件引用，打包时只会生成一个文件</li>
+<li>如果引用的文件没有调用，不会打包，如果引入的变量和方法没有调用也不会打包</li>
+<li>对于多入口文件，加入引入了相同的代码，可以用插件把它抽离到公共文件中</li>
+</ul>]]></content>
+        <author>
+            <name>moubing</name>
+        </author>
+        <category label="interview" term="interview"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[开发日志3]]></title>
         <id>https://moubing.github.io/blog/dev-log3</id>
@@ -211,7 +705,7 @@
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>备注</div><div class="admonitionContent_BuS1"><p><code>git reflog</code>可以查看到这些包括回滚操作的历史记录</p></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="比较差异">比较差异<a href="https://moubing.github.io/blog/git#%E6%AF%94%E8%BE%83%E5%B7%AE%E5%BC%82" class="hash-link" aria-label="比较差异的直接链接" title="比较差异的直接链接">​</a></h3>
 <p>它可以用来查看文件在工作区，暂存区以及版本库之间的差异，还可以查看文件在两个特定版本之间的差异，两个分支之间的差异</p>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># 什么配置都不加，默认比较的是工作区和暂存区之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较工作区加暂存区和本地仓库之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> HEAD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较暂存区和本地仓库之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--cached</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--staged</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较提交之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">commit_hash</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">commit_hash</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> HEAD^ HEAD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较分支之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">branch_name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">branch_name</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="�复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># 什么配置都不加，默认比较的是工作区和暂存区之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较工作区加暂存区和本地仓库之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> HEAD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较暂存区和本地仓库之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--cached</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--staged</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较提交之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">commit_hash</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">commit_hash</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> HEAD^ HEAD</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 比较分支之间的差异</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">diff</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">branch_name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">branch_name</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>备注</div><div class="admonitionContent_BuS1"><p>这些有关于 git diff 的操作最后面都可以加上文件名，然后就会之比较这些文件的差异，举个例子，git diff test.txt，这个命令只会比较工作区和暂存区中 test.txt 差异。</p></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="删除操作">删除操作<a href="https://moubing.github.io/blog/git#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C" class="hash-link" aria-label="删除操作的直接链接" title="删除操作的直接链接">​</a></h3>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># 先从工作区删除文件，然后在暂存区中更新删除内容</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">rm</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">file_name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">add</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">file_name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 把文件从工作区和暂存区中同时删除</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">rm</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">file_name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 把文件从暂存区中删除，但保留在工作区，其实就相当于不追踪这个文件了</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">git</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">rm</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--cached</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">file_name</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
